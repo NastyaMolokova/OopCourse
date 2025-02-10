@@ -9,46 +9,80 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите начальное значение первого интервала:");
-        int rangeStart1 = scanner.nextInt();
+        double rangeFrom1 = scanner.nextDouble();
 
         System.out.println("Введите конечное значение первого интервала:");
-        int rangeEnd1 = scanner.nextInt();
+        double rangeTo1 = scanner.nextDouble();
 
         System.out.println("Введите начальное значение второго интервала:");
-        int rangeStart2 = scanner.nextInt();
+        double rangeFrom2 = scanner.nextDouble();
 
         System.out.println("Введите конечное значение второго интервала:");
-        int rangeEnd2 = scanner.nextInt();
+        double rangeTo2 = scanner.nextDouble();
 
-        Range range1 = new Range(rangeStart1, rangeEnd1);
-        Range range2 = new Range(rangeStart2, rangeEnd2);
+        System.out.println("Введите число для проверки принадлежности указанным интервалам:");
+        double number = scanner.nextDouble();
 
-        Range intersection = range1.intersection(range2);
+        Range range1 = new Range(rangeFrom1, rangeTo1);
+        Range range2 = new Range(rangeFrom2, rangeTo2);
 
-        if (intersection != null) {
-            System.out.println("Пересечение интервалов: [" + intersection.getFrom() + ", " + intersection.getTo() + "]");
+        System.out.printf("Длина первого интервала: %.2f\n", range1.getLength());
+        System.out.printf("Длина второго интервала: %.2f", range2.getLength());
+        System.out.println();
+
+        if (range1.isInside(number)) {
+            System.out.println("Ваше число принадлежит первому интервалу.");
         } else {
-            System.out.println("Пересечений нет.");
+            System.out.println("Ваше число не принадлежит первому интервалу.");
         }
 
-        Range[] union = range1.union(range2);
-        System.out.print("Объединение интервалов:");
-
-        for (Range e : union) {
-            System.out.print("[" + e.getFrom() + ", " + e.getTo() + "]");
+        if (range2.isInside(number)) {
+            System.out.println("Ваше число принадлежит второму интервалу.");
+        } else {
+            System.out.println("Ваше число не принадлежит второму интервалу.");
         }
 
         System.out.println();
 
-        Range[] complement = range1.complement(range2);
+        Range getIntersection = range1.getIntersection(range2);
 
-        if (complement.length == 0) {
-            System.out.println("Получить разность интервалов невозможно.");
+        if (getIntersection != null) {
+            System.out.println("Пересечение интервалов: [" + getIntersection.getFrom() + ", " + getIntersection.getTo() + "]");
         } else {
-            System.out.print("Разность интервалов:");
+            System.out.println("Пересечений нет.");
+        }
 
-            for (Range e : complement) {
-                System.out.print("[" + e.getFrom() + ", " + e.getTo() + "]");
+        Range[] getUnion = range1.getUnion(range2);
+        System.out.print("Объединение интервалов: ");
+
+        for (Range range : getUnion) {
+            System.out.print("[" + range.getFrom() + ", " + range.getTo() + "]");
+        }
+
+        System.out.println();
+
+        Range[] getDifference1 = range1.getDifference(range2);
+
+        if (getDifference1.length == 0) {
+            System.out.println("Получить разность интервалов невозможно, первый интервал входит во второй. Попробуем из второго интервала вычесть первый.");
+
+            range1.setFrom(rangeFrom2);
+            range1.setTo(rangeTo2);
+            range2.setFrom(rangeFrom1);
+            range2.setTo(rangeTo1);
+
+            Range[] getDifference2 = range1.getDifference(range2);
+            System.out.print("Разность интервалов: ");
+
+            for (Range range : getDifference2) {
+                System.out.print("[" + range.getFrom() + ", " + range.getTo() + "]");
+            }
+
+        } else {
+            System.out.print("Разность интервалов: ");
+
+            for (Range range : getDifference1) {
+                System.out.print("[" + range.getFrom() + ", " + range.getTo() + "]");
             }
         }
     }
