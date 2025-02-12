@@ -31,7 +31,11 @@ public class Rectangle implements Shape {
     }
 
     @Override
-    public String getType() {
-        return "Прямоугольник";
+    public String toString() {
+        return "Прямоугольник" + "\n"
+                + "Ширина фигуры: " + getWidth() + "\n"
+                + "Длина фигуры: " + getHeight() + "\n"
+                + "Площадь фигуры: " + getArea() + "\n"
+                + "Периметр фигуры: " + getPerimeter();
     }
 }

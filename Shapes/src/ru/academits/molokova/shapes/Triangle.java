@@ -43,7 +43,11 @@ public class Triangle implements Shape {
     }
 
     @Override
-    public String getType() {
-        return "Треугольник";
+    public String toString() {
+        return "Треугольник" + "\n"
+                + "Ширина фигуры: " + getWidth() + "\n"
+                + "Длина фигуры: " + getHeight() + "\n"
+                + "Площадь фигуры: " + getArea() + "\n"
+                + "Периметр фигуры: " + getPerimeter();
     }
 }

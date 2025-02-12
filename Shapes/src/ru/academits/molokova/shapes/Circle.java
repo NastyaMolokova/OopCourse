@@ -29,7 +29,11 @@ public class Circle implements Shape {
     }
 
     @Override
-    public String getType() {
-        return "Окружность";
+    public String toString() {
+        return "Окружность" + "\n"
+                + "Ширина фигуры: " + getWidth() + "\n"
+                + "Длина фигуры: " + getHeight() + "\n"
+                + "Площадь фигуры: " + getArea() + "\n"
+                + "Периметр фигуры: " + getPerimeter();
     }
 }

@@ -1,8 +1,6 @@
 package ru.academits.molokova.shapes;
 
 public interface Shape {
-    String getType();
-
     double getWidth();
 
     double getHeight();
@@ -10,4 +8,6 @@ public interface Shape {
     double getArea();
 
     double getPerimeter();
+
+    String toString();
 }
