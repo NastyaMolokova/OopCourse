@@ -95,7 +95,8 @@ public class Triangle implements Shape {
 
     @Override
     public String toString() {
-        return String.format("Треугольник%nШирина фигуры: %.1f%nДлина фигуры: %.1f%nПлощадь фигуры: %.2f%nПериметр фигуры: %.2f%n", getWidth(), getHeight(), getArea(), getPerimeter());
+        return String.format("Треугольник%nШирина фигуры: %.1f%nДлина фигуры: %.1f%nПлощадь фигуры: %.2f%nПериметр фигуры: %.2f%n",
+                getWidth(), getHeight(), getArea(), getPerimeter());
     }
 
     @Override
