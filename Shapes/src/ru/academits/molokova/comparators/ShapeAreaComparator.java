@@ -1,4 +1,4 @@
-package ru.academits.molokova.comparator;
+package ru.academits.molokova.comparators;
 
 import ru.academits.molokova.shapes.Shape;
 

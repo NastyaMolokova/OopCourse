@@ -4,6 +4,7 @@ public class Circle implements Shape {
     private double radius;
 
     public Circle(double radius) {
+        checkRadius(radius);
         this.radius = radius;
     }
 
@@ -12,7 +13,14 @@ public class Circle implements Shape {
     }
 
     public void setRadius(double radius) {
+        checkRadius(radius);
         this.radius = radius;
+    }
+
+    private void checkRadius(double radius) {
+        if (radius <= 0) {
+            throw new IllegalArgumentException("Радиус окружности должне быть > 0. Радиус: " + radius);
+        }
     }
 
     @Override
@@ -37,8 +45,8 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return String.format("Окружность%nШирина фигуры: %.1f%nДлина фигуры: %.1f%nПлощадь фигуры: %.2f%nПериметр фигуры: %.2f%n",
-                getWidth(), getHeight(), getArea(), getPerimeter());
+        return String.format("Окружность%nРадиус: %.1f%nШирина: %.1f%nДлина: %.1f%nПлощадь: %.2f%nПериметр: %.2f%n",
+                radius, getWidth(), getHeight(), getArea(), getPerimeter());
     }
 
     @Override

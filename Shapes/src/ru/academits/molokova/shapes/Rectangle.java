@@ -5,6 +5,8 @@ public class Rectangle implements Shape {
     private double height;
 
     public Rectangle(double width, double height) {
+        checkWidth(width);
+        checkHeight(height);
         this.width = width;
         this.height = height;
     }
@@ -15,6 +17,7 @@ public class Rectangle implements Shape {
     }
 
     public void setWidth(double width) {
+        checkWidth(width);
         this.width = width;
     }
 
@@ -24,7 +27,20 @@ public class Rectangle implements Shape {
     }
 
     public void setHeight(double height) {
+        checkHeight(height);
         this.height = height;
+    }
+
+    private void checkWidth(double width) {
+        if (width <= 0) {
+            throw new IllegalArgumentException("Ширина прямоугольника должна быть > 0. Ширина: " + width);
+        }
+    }
+
+    private void checkHeight(double height) {
+        if (height <= 0) {
+            throw new IllegalArgumentException("Длина прямогульника должна быть > 0. Длина: " + height);
+        }
     }
 
     @Override
@@ -39,8 +55,8 @@ public class Rectangle implements Shape {
 
     @Override
     public String toString() {
-        return String.format("Прямоугольник%nШирина фигуры: %.1f%nДлина фигуры: %.1f%nПлощадь фигуры: %.2f%nПериметр фигуры: %.2f%n",
-                getWidth(), getHeight(), getArea(), getPerimeter());
+        return String.format("Прямоугольник%nШирина: %.1f%nДлина: %.1f%nПлощадь: %.2f%nПериметр: %.2f%n",
+                width, height, getArea(), getPerimeter());
     }
 
     @Override

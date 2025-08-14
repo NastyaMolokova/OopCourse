@@ -4,6 +4,7 @@ public class Square implements Shape {
     private double sideLength;
 
     public Square(double length) {
+        checkSideLength(length);
         sideLength = length;
     }
 
@@ -12,7 +13,14 @@ public class Square implements Shape {
     }
 
     public void setSideLength(double sideLength) {
+        checkSideLength(sideLength);
         this.sideLength = sideLength;
+    }
+
+    private void checkSideLength(double length) {
+        if (length <= 0) {
+            throw new IllegalArgumentException("Длина стороны квадрата должна быть > 0. Длина: " + length);
+        }
     }
 
     @Override
@@ -37,8 +45,8 @@ public class Square implements Shape {
 
     @Override
     public String toString() {
-        return String.format("Квадрат%nШирина фигуры: %.1f%nДлина фигуры: %.1f%nПлощадь фигуры: %.2f%nПериметр фигуры: %.2f%n",
-                getWidth(), getHeight(), getArea(), getPerimeter());
+        return String.format("Квадрат%nСторона квадрата: %.1f%nШирина: %.1f%nДлина: %.1f%nПлощадь: %.2f%nПериметр: %.2f%n",
+                sideLength, getWidth(), getHeight(), getArea(), getPerimeter());
     }
 
     @Override

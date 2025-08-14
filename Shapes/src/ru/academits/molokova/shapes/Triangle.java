@@ -8,7 +8,14 @@ public class Triangle implements Shape {
     private double x3;
     private double y3;
 
+    private static final double EPSILON = 1.0e-10;
+
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
+        if (Math.abs((y2 - y1) * (x3 - x2) - (y3 - y2) * (x2 - x1)) <= EPSILON) {
+            throw new IllegalArgumentException("Треугольник с вершинами (" + x1 + ";" + y1 + "), (" + x2 + ";" + y2 +
+                    "), (" + x3 + ";" + y3 + ") не существует,т.к. точки лежат на одной прямой");
+        }
+
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -65,7 +72,7 @@ public class Triangle implements Shape {
         this.y3 = y3;
     }
 
-    public static double getSideLength(double x1, double y1, double x2, double y2) {
+    private static double getSideLength(double x1, double y1, double x2, double y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
@@ -95,8 +102,8 @@ public class Triangle implements Shape {
 
     @Override
     public String toString() {
-        return String.format("Треугольник%nШирина фигуры: %.1f%nДлина фигуры: %.1f%nПлощадь фигуры: %.2f%nПериметр фигуры: %.2f%n",
-                getWidth(), getHeight(), getArea(), getPerimeter());
+        return String.format("Треугольник%nПервая точка (%.1f; %.1f)%nВторая точка (%.1f; %.1f)%nТретья точка (%.1f; %.1f)%nШирина: %.1f%nДлина: %.1f%nПлощадь: %.2f%nПериметр: %.2f%n",
+                x1, y1, x2, y2, x3, y3, getWidth(), getHeight(), getArea(), getPerimeter());
     }
 
     @Override
