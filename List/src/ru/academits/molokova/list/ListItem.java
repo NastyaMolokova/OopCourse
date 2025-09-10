@@ -1,3 +1,5 @@
+package ru.academits.molokova.list;
+
 public class ListItem<T> {
     private T data;
     private ListItem<T> next;

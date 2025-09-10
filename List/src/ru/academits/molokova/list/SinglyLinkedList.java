@@ -1,3 +1,5 @@
+package ru.academits.molokova.list;
+
 import java.util.NoSuchElementException;
 
 public class SinglyLinkedList<T> {
